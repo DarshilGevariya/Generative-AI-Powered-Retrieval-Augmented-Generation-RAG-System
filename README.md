@@ -1,44 +1,33 @@
-# Smartphone Tweet Sentiment Analysis
+# Generative AI–Based Retrieval-Augmented Generation (RAG) System
 
 ## Overview
-The goal of this project was to analyze public sentiment around popular smartphone brands using Twitter data. The work involved collecting and cleaning tweets, handling multilingual text, extracting useful features, and training models to classify sentiment and study brand perception.
+This project implements a Retrieval-Augmented Generation (RAG) system to answer questions using external documents. The system retrieves relevant content from articles or text files and uses a language model to generate responses grounded in the retrieved data.
 
-## Data
-- Processed **12,000+ tweets** related to smartphones  
-- Tweets were **manually labeled** for sentiment  
-- Analysis covered **9 major smartphone brands**
+## Data Ingestion
+- Built an ingestion pipeline to fetch articles from URLs and process uploaded text files  
+- Cleaned and preprocessed raw text to make it suitable for downstream indexing  
 
-## Text Preprocessing
-Several preprocessing steps were applied to improve data quality:
-- Emoji decoding to retain sentiment information  
-- Translation of **1000+ Hindi phrases** to English using Google Translate API  
-- Basic text normalization (lowercasing, noise removal, etc.)  
-- Brand name extraction using regex patterns  
+## Document Processing & Embeddings
+- Used LangChain’s UnstructuredURLLoader to extract text from web sources  
+- Converted documents into vector representations using OpenAI embeddings  
+- Stored embeddings in a vector database for efficient retrieval  
 
----
+## Retrieval & Generation
+- Implemented similarity search using FAISS to retrieve relevant documents  
+- Integrated ChatGPT to generate answers based on retrieved context  
+- Added basic attribution by linking responses back to source documents  
 
-## Feature Engineering
-- Created **TF-IDF vectors** for traditional ML models  
-- Used **BERT embeddings** to capture contextual meaning in text  
+## Key Learnings
+- Importance of clean document ingestion for reliable retrieval  
+- Trade-offs between retrieval quality and generation accuracy  
+- Practical experience with vector search and prompt grounding  
 
-## Modeling
-- Trained an **XGBoost classifier** on TF-IDF features  
-- Fine-tuned **BERT** on an external dataset for sentiment classification  
-- Compared model behavior across different brands  
-
-## Observations
-- BERT performed better on context-heavy and ambiguous tweets  
-- TF-IDF + XGBoost worked well for shorter, cleaner text  
-- The results highlighted sentiment differences across smartphone brands  
-
-
-## Tools Used
+## Tools & Technologies
 - Python  
-- scikit-learn  
-- XGBoost  
-- Hugging Face Transformers  
-- Regex  
-- Google Translate API  
+- LangChain  
+- FAISS  
+- OpenAI Embeddings  
+- ChatGPT
 
 ## Notes
-This project helped in understanding practical challenges in real-world text data, especially multilingual content and noisy social media text.
+The project focuses on building a simple and extensible RAG pipeline rather than optimizing for large-scale production use.
